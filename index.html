@@ -320,11 +320,28 @@
   </div>
 </nav>
 
-<!-- HOME -->
- <div id="theme-toggle-bar" style="position:fixed; top:72px; right:0; z-index:999; display:flex; align-items:center; gap:7px; background:var(--nav-bg); backdrop-filter:blur(20px); padding:6px 16px; border-left:1px solid var(--border); border-bottom:1px solid var(--border); border-bottom-left-radius:8px;">
-  <span style="font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.06em;" id="toggle-label">Dark</span>
-  <div class="theme-toggle" onclick="toggleTheme()" title="Toggle theme"></div>
+<!-- FLOATING THEME TOGGLE -->
+<div id="theme-toggle-float" style="
+  position: fixed;
+  top: 80px;
+  right: 24px;
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 8px 16px 8px 12px;
+  box-shadow: 0 4px 20px var(--shadow);
+  cursor: pointer;
+  transition: all 0.3s;
+" onclick="toggleTheme()" title="Toggle theme">
+  <span id="toggle-label" style="font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.07em; font-family:var(--font-body); font-weight:500; user-select:none;">Dark</span>
+  <div class="theme-toggle" style="pointer-events:none;"></div>
 </div>
+
+<!-- HOME -->
 <div id="page-home" class="page active">
   <section class="hero">
     <div class="hero-bg"></div>
