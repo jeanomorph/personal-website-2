@@ -36,7 +36,7 @@
       --text-heading: #0a1628;
       --border: rgba(10,22,40,0.1);
       --card-bg: #ffffff;
-      --nav-bg: rgba(247,244,239,0.93);
+      ---bg: rgba(247,244,239,0.93);
       --shadow: rgba(10,22,40,0.1);
     }
 
@@ -58,16 +58,16 @@
     .page.active { display: block; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* NAV */
-    nav {
+    /*  */
+     {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       padding: 0 48px; height: 72px;
       display: flex; align-items: center; justify-content: space-between;
-      background: var(--nav-bg); backdrop-filter: blur(20px);
+      background: var(---bg); backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border); transition: background 0.4s;
     }
-    .nav-logo { font-family: var(--font-display); font-size: 1.6rem; color: var(--text-heading); cursor: pointer; letter-spacing: 0.04em; }
-    .nav-logo span { color: var(--orange); }
+    .-logo { font-family: var(--font-display); font-size: 1.6rem; color: var(--text-heading); cursor: pointer; letter-spacing: 0.04em; }
+    .-logo span { color: var(--orange); }
     .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
     .nav-links a { font-size: 0.8rem; font-weight: 500; color: var(--text-muted); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; cursor: pointer; }
     .nav-links a:hover, .nav-links a.active { color: var(--orange); }
@@ -298,6 +298,7 @@
       .social-links-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-inner { flex-direction: column; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
+      #mobile-theme-toggle { display: flex !important; }
     }
   </style>
 </head>
@@ -325,7 +326,10 @@
     <span></span><span></span><span></span>
   </div>
 </nav>
-
+<div id="mobile-theme-toggle" style="display:none; position:fixed; top:80px; right:20px; z-index:999; display:flex; align-items:center; gap:7px; background:var(--nav-bg); backdrop-filter:blur(20px); padding:6px 10px; border-radius:20px; border:1px solid var(--border);">
+  <span style="font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.06em;" id="mobile-toggle-label">Dark</span>
+  <div class="theme-toggle" onclick="toggleTheme()" title="Toggle theme"></div>
+</div>
 <!-- HOME -->
 <div id="page-home" class="page active">
   <section class="hero">
@@ -817,15 +821,13 @@
   }
 
   function toggleTheme() {
-    var html = document.documentElement;
-    var isDark = html.getAttribute('data-theme') === 'dark';
-    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    document.getElementById('toggle-label').textContent = isDark ? 'Light' : 'Dark';
-    var photo = document.querySelector('.theme-photo');
-    if (photo) photo.src = isDark ? LIGHT_PHOTO : DARK_PHOTO;
-    var caption = document.getElementById('photo-caption');
-    if (caption) caption.textContent = isDark ? "can't see me in the dark anyway" : 'serious mode: dark theme activated';
-  }
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  const label = isDark ? 'Light' : 'Dark';
+  document.getElementById('toggle-label').textContent = label;
+  document.getElementById('mobile-toggle-label').textContent = label;
+}
 
   function toggleMenu() {
     var links = document.querySelector('.nav-links');
